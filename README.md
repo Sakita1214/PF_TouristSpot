@@ -22,14 +22,14 @@
 ・画面遷移図<br>
 https://app.diagrams.net/#G19hL0SDsjY2CmUOEvLv8uOYwMDM5Tz80w
 
-・ワイヤーフレーム
+・ワイヤーフレーム<br>
 https://app.diagrams.net/?libs=general;mockups#G1UH9Y6yiUl5m0KC7tFOY8ju3LN5T8aesS
 
-・ER図
+・ER図<br>
 
-・テーブル提議書
+・テーブル提議書<br>
 
-・アプリケーション詳細設計
+・アプリケーション詳細設計<br>
 
 
 ## 開発環境
