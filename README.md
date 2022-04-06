@@ -19,7 +19,17 @@
 ・旅行先でどこに行くか決まっていない時<br>
 
 ## 設計書
-<...>
+・画面遷移図
+https://app.diagrams.net/#G19hL0SDsjY2CmUOEvLv8uOYwMDM5Tz80w
+
+・ワイヤーフレーム
+
+・ER図
+
+・テーブル提議書
+
+・アプリケーション詳細設計
+
 
 ## 開発環境
 - OS：Linux(CentOS)
