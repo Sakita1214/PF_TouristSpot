@@ -19,7 +19,7 @@
 ・旅行先でどこに行くか決まっていない時<br>
 
 ## 設計書
-・画面遷移図
+・画面遷移図<br>
 https://app.diagrams.net/#G19hL0SDsjY2CmUOEvLv8uOYwMDM5Tz80w
 
 ・ワイヤーフレーム
