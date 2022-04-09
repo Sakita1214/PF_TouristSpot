@@ -32,7 +32,7 @@ https://app.diagrams.net/?libs=general;er#G12DS4SRnCynSjh8K6Q2OcdQSvKIq2tbFw
 https://docs.google.com/spreadsheets/d/1jPbfWhpltaYWnqdvb-7um8quIzAGWYRmn0_R3k1Lx2o/edit#gid=1373217982
 
 ・アプリケーション詳細設計<br>
-
+https://docs.google.com/spreadsheets/d/1pRHf_TxrX3v57KzwDkQfRkEm81i5B54eZHgN7dm06a8/edit#gid=2133469642
 
 
 ## 開発環境
