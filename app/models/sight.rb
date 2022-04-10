@@ -1,0 +1,2 @@
+class Sight < ApplicationRecord
+end
