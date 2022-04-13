@@ -7,6 +7,15 @@ Rails.application.routes.draw do
    sessions: 'public/sessions'
   }
 
+  scope module: :public do
+    resources :sights, only: [:index, :new]
+      resources :posts, only: [:new, :create]
+      resources :post_comments, only: [:show, :edit, :create, :index, :update, :destroy]
+
+    resources :users, only: [:show, :edit, :update]
+  end
+
+
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
   }
