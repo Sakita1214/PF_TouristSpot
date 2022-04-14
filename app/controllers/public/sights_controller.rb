@@ -14,4 +14,10 @@ class Public::SightsController < ApplicationController
 
   #絞り込み検索機能
 
+  private
+
+  def post_params
+      params.require(:post).permit(:body,:lat,:lng)
+  end
+
 end

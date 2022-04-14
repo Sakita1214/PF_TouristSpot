@@ -8,11 +8,16 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    resources :sights, only: [:index, :new]
+    resources :sights, only: [:index, :new] do
       resources :posts, only: [:new, :create]
       resources :post_comments, only: [:show, :edit, :create, :index, :update, :destroy]
-
-    resources :users, only: [:show, :edit, :update]
+    end
+    resources :users, only: [:show, :edit, :update] do
+      collection do
+        get "quit"
+        patch "out"
+      end
+    end
   end
 
 
