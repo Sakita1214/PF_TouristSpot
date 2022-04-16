@@ -3,27 +3,22 @@ test
 
 <%= form_with(model: @post, local: true) do |f| %>
   <div class="actions">
-    <%= f.label :body,"内容" %>
-    <%= f.text_field :body %>
     <%= f.label :lat,"緯度" %>
     <%= f.text_field :lat,:value =>"緯度", id: :lat %>
     <%= f.label :lng,"経度" %>
     <%= f.text_field :lng,:value =>"経度", id: :lng %>
-    <%= f.submit %>
-  </div>
+    <%= f.submit "登録する" %>
 <% end %>
 
-<h2>Map</h2>
-
-<input id="address" type="textbox" value="GeekSalon">
+<input id="address" type="textbox" placeholder="地図上を検索" value="東京駅">
 <input type="button" value="検索" onclick="codeAddress()">
 <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
 <div id='map'></div>
-
+</div>
 <style>
 #map {
   height: 600px;
-  width: 600px;
+  width: 800px;
 }
 </style>
 
