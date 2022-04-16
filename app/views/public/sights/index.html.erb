@@ -7,7 +7,7 @@ test
     <%= f.text_field :lat,:value =>"緯度", id: :lat %>
     <%= f.label :lng,"経度" %>
     <%= f.text_field :lng,:value =>"経度", id: :lng %>
-    <%= f.submit "登録する" %>
+    <%= f.submit "登録する", class: "btn btn-primary" %>
 <% end %>
 
 <input id="address" type="textbox" placeholder="地図上を検索" value="東京駅">
