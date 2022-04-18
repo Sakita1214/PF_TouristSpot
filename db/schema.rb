@@ -71,13 +71,6 @@ ActiveRecord::Schema.define(version: 2022_04_10_164327) do
     t.integer "category_id"
     t.string "place"
     t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "sights", force: :cascade do |t|
-    t.integer "post_id"
-    t.string "address"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false

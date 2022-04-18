@@ -1,5 +1,5 @@
 test
-<%= form_with(model: @post, local: true) do |f| %>
+<%= form_with(model: nil, local: true) do |f| %>
   <div class="actions">
     <%= f.label :lat,"緯度" %>
     <%= f.text_field :lat,:value =>"緯度", id: :lat %>
@@ -9,7 +9,7 @@ test
 
 <input id="address" type="textbox" placeholder="地図上を検索" value="東京駅">
 <input type="button" value="検索" onclick="codeAddress()">
-<p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
+<p>ピンをドラック＆ドロップで位置の調整ができます。<p>
 <div id='map'></div>
 </div>
 <style>
@@ -34,16 +34,16 @@ function initMap(){
   });
 
   // -- start - 1set
-  <% @sights.each do |sight| %>
-    marker_<%= sight.id %> = new google.maps.Marker({ // マーカーの追加
-      position: {lat: <%= sight.latitude %>, lng: <%= sight.longitude %>}, // マーカーを立てる位置を指定
-      map: map // マーカーを立てる地図を指定
+  <% @posts.each do |post| %>
+    marker_<%= post.id %> = new google.maps.Marker({ // ピンの追加
+      position: {lat: <%= post.latitude %>, lng: <%= post.longitude %>}, // ピンを立てる位置を指定
+      map: map // ピンを立てる地図を指定
     });
 
-    marker_<%= sight.id %>.addListener('click', function() { // マーカーをクリックしたとき
+    marker_<%= post.id %>.addListener('click', function() { // ピンをクリックしたとき
       new google.maps.InfoWindow({ // 吹き出しの追加
-          content: '<div class="sample">TAM 大阪</div>' // 吹き出しに表示する内容
-      }).open(map, marker_<%= sight.id %>);
+          content: '<div class="sample"><%= post.place %></div>' // 吹き出しに表示する内容
+      }).open(map, marker_<%= post.id %>);
     });
   <% end %>
   // -- end - 1set
@@ -57,12 +57,12 @@ function codeAddress(){
   let inputAddress = document.getElementById('address').value;
   geocoder.geocode( { 'address': inputAddress}, function(results, status) {
     if (status == 'OK') {
-        //マーカーが複数できないようにする
+        //ピンが複数できないようにする
         if (aft == true){
             marker.setMap(null);
         }
 
-        //新しくマーカーを作成する
+        //新しくピンを作成する
         map.setCenter(results[0].geometry.location);
             marker = new google.maps.Marker({
             map: map,
@@ -77,7 +77,7 @@ function codeAddress(){
         document.getElementById('lat').value = results[0].geometry.location.lat();
         document.getElementById('lng').value = results[0].geometry.location.lng();
 
-        // マーカーのドロップ（ドラッグ終了）時のイベント
+        // ピンのドロップ（ドラッグ終了）時のイベント
         google.maps.event.addListener( marker, 'dragend', function(ev){
             // イベントの引数evの、プロパティ.latLngが緯度経度
             document.getElementById('lat').value = ev.latLng.lat();
@@ -85,10 +85,13 @@ function codeAddress(){
         });
 
         let infoWindow = new google.maps.InfoWindow({
-          content: 'ここはまだ登録されていないようです…<br/>何があるのか紹介してみましょう！<div class="text-center"><%= link_to '登録する', root_path %></div>'
+          content: ''
         })
 
         google.maps.event.addListener(marker, 'click', function() {
+          infoWindow = new google.maps.InfoWindow({
+          content: 'ここはまだ登録されていないようです…<br/>何があるのか紹介してみましょう！<div class="text-center"><a href="/sights/posts/new?lat=' + document.getElementById('lat').value + '&lng=' + document.getElementById('lng').value + '">登録する</a></div>'
+          })
           infoWindow.open(map, marker)
         })
     } else {

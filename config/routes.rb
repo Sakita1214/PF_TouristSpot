@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :sights, only: [:index] do
-      resources :posts, only: [:new, :create, :show]
+      collection do
+        resources :posts, only: [:new, :create, :show]
+      end
       resources :post_comments, only: [:show, :edit, :create, :index, :update, :destroy]
     end
     resources :users, only: [:show, :edit, :update] do

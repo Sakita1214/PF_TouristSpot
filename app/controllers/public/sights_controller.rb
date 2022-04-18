@@ -2,7 +2,10 @@ class Public::SightsController < ApplicationController
 
   def index
     @sights = Sight.all
+    @post = Post.new
+    @posts = Post.all
   end
+
 
   #地図機能
 
