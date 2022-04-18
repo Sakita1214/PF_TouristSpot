@@ -58,13 +58,6 @@ ActiveRecord::Schema.define(version: 2022_04_10_164327) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "images", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "post_comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
@@ -75,16 +68,16 @@ ActiveRecord::Schema.define(version: 2022_04_10_164327) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "category_id"
+    t.string "place"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sights", force: :cascade do |t|
     t.integer "post_id"
-    t.integer "category_id"
-    t.string "place"
     t.string "address"
-    t.text "description"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false

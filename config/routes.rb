@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    resources :sights, only: [:index, :new] do
-      resources :posts, only: [:new, :create]
+    resources :sights, only: [:index] do
+      resources :posts, only: [:new, :create, :show]
       resources :post_comments, only: [:show, :edit, :create, :index, :update, :destroy]
     end
     resources :users, only: [:show, :edit, :update] do
@@ -19,6 +19,11 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # 退会確認画面
+  get "/users/:id/unsubscribe" => "public/users#unsubscribe", as: "unsubscribe"
+  # 論理削除用のルーティング
+  patch "/users/:id/withdrawal" => "public/users#withdrawal", as: "withdrawal"
 
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

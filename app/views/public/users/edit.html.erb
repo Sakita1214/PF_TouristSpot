@@ -1,0 +1,21 @@
+<div class='container mt-5'>
+  <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">登録情報編集</h2>
+  <div class='row mt-5'>
+    <div class='col-6 mx-auto'>
+      <%= form_with model: @user, url: user_path(@user.id), method: :patch, local: :true do |f| %>
+    <table class="table table-bordered border-dark">
+      <tr>
+        <td>ニックネーム</td>
+        <td><%= f.text_field :name, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <td>メールアドレス</td>
+        <td><%= f.email_field :email, class: "form-control" %></td>
+      </tr>
+    </table>
+        <%= f.submit "変更", class: "mt-3 col-3 btn btn-sm btn-success" %>
+        <%= link_to "退会", unsubscribe_path, class: "mt-3 col-3 btn btn-sm btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+</div>

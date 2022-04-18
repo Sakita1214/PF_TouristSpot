@@ -1,13 +1,10 @@
 test
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-
 <%= form_with(model: @post, local: true) do |f| %>
   <div class="actions">
     <%= f.label :lat,"緯度" %>
     <%= f.text_field :lat,:value =>"緯度", id: :lat %>
     <%= f.label :lng,"経度" %>
     <%= f.text_field :lng,:value =>"経度", id: :lng %>
-    <%= f.submit "登録する", class: "btn btn-primary" %>
 <% end %>
 
 <input id="address" type="textbox" placeholder="地図上を検索" value="東京駅">
@@ -24,22 +21,39 @@ test
 
 <script>
 //初期マップの設定
-let map
-let marker
+
+var map
+var marker
+
 function initMap(){
+
   geocoder = new google.maps.Geocoder()
-
   map = new google.maps.Map(document.getElementById('map'), {
-    center:  {lat: 35.6803997, lng:139.7690174},  //東京
+    center:  {lat: 35.6803997, lng: 139.7690174},  //東京
     zoom: 15,
-
   });
+
+  // -- start - 1set
+  <% @sights.each do |sight| %>
+    marker_<%= sight.id %> = new google.maps.Marker({ // マーカーの追加
+      position: {lat: <%= sight.latitude %>, lng: <%= sight.longitude %>}, // マーカーを立てる位置を指定
+      map: map // マーカーを立てる地図を指定
+    });
+
+    marker_<%= sight.id %>.addListener('click', function() { // マーカーをクリックしたとき
+      new google.maps.InfoWindow({ // 吹き出しの追加
+          content: '<div class="sample">TAM 大阪</div>' // 吹き出しに表示する内容
+      }).open(map, marker_<%= sight.id %>);
+    });
+  <% end %>
+  // -- end - 1set
 }
 
+var geocoder
+var aft
 //検索後のマップ作成
-let geocoder
-let aft
 function codeAddress(){
+
   let inputAddress = document.getElementById('address').value;
   geocoder.geocode( { 'address': inputAddress}, function(results, status) {
     if (status == 'OK') {
@@ -69,6 +83,14 @@ function codeAddress(){
             document.getElementById('lat').value = ev.latLng.lat();
             document.getElementById('lng').value = ev.latLng.lng();
         });
+
+        let infoWindow = new google.maps.InfoWindow({
+          content: 'ここはまだ登録されていないようです…<br/>何があるのか紹介してみましょう！<div class="text-center"><%= link_to '登録する', root_path %></div>'
+        })
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infoWindow.open(map, marker)
+        })
     } else {
       alert('該当する結果がありませんでした：' + status);
     }
@@ -76,4 +98,4 @@ function codeAddress(){
 }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAP'] %>&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAP'] %>&callback=initMap" async defer data-turbolinks-eval="false"></script>

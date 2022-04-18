@@ -1,0 +1,11 @@
+<div class='container mt-5'>
+ <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark ">本当に退会しますか？</h2>
+  <div class='row mt-5'>
+    <div class='col-8 mx-auto'>
+      <h5>退会すると<font color="red">これまでの投稿データは全て消去</font>されてしまい、<font color="red">元には戻りません。</font></h5>
+      <h5>よろしければ、下記のボタンより「退会する」をクリックしてください。</h5>
+      <%= link_to "退会しない", user_path, class: "mt-5 col mx-auto btn btn-sm btn-primary" %>
+      <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "mt-5 col mx-auto btn btn-sm btn-danger" %>
+    </div>
+  </div>
+</div>
