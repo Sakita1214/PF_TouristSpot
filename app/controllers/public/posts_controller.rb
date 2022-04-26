@@ -25,18 +25,9 @@ class Public::PostsController < ApplicationController
     @post_comment = PostComment.new
   end
 
-  def edit
-    @post = Post.find(params[:id])
-    if @post.user_id == current_user.id
-      render :edit
-    else
-      redirect_to posts_path
-    end
-  end
-
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
+    @post.update(description: params[:post][:description])
     redirect_to post_path(@post.id)
   end
 
