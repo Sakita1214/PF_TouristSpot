@@ -1,8 +1,11 @@
-<div class="container">
-  <h4 style="background-color:#EEEEEE;color:dark;display:inline">新規会員登録</h4>
-  <%= form_with model: @user, url: user_registration_path do |f| %>
-    <%= render "public/shared/error_messages", resource: resource %>
-  <br>
+<div class='container'>
+  <div class='row mt-5'>
+    <div class='col-12 mx-auto'>
+      <div class="pt-5 pl-5 pr-5 pb-5">
+    <h4 style="background-color:#EEEEEE;color:dark;display:inline">新規会員登録</h4>
+    <%= form_with model: @user, url: user_registration_path do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
+    <br>
 
     <div class="row form-group">
       <div class="col-sm-3"><%= f.label :ニックネーム %></div>
@@ -38,4 +41,7 @@
 
   <%= link_to "こちら", new_user_session_path %>
   <span>　からログインをお願いします。</span>
+      </div>
+    </div>
+  </div>
 </div>

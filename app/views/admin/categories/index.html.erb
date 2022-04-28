@@ -1,0 +1,32 @@
+<div class="container my-4">
+  <h4 style="background-color:#EEEEEE;color:dark;display:inline">カテゴリ一覧・追加</h4>
+  <div class="row">
+    <div class = my-4>
+      <%= form_with model: @category,url: admin_categories_path do |f| %>
+      <%= f.label :name, "カテゴリ名"%>
+      <%= f.text_field :name %>
+      <%= f.submit '新規登録',class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-lg-6">
+    <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>カテゴリ</th>
+    </th>
+  </thead>
+   <% @categories.each do |category| %>
+    <tr>
+      <td>
+        <div class="row">
+        <div class="col-md-8"> <%= category.name %></div>
+        <div class="col-6 col-md-4"><%= link_to "編集する",edit_admin_category_path(category), class: 'btn btn-success' %></div>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+</div>

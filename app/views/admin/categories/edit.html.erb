@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row mt-5">
+  <h4 style="background-color:#EEEEEE;color:dark;display:inline">カテゴリ編集</h4>
+  </div>
+  <div class="row mt-5">
+<%= form_with model: @category,url: admin_category_path(@category.id), method: :patch   do |f| %>
+<%= f.label :name, "カテゴリ名"%>
+<%= f.text_field :name %>
+<%= f.submit '変更を保存',class: 'btn btn-success' %>
+<% end %>
+</div>
+</div>

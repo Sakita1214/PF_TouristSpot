@@ -10,9 +10,10 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :sights, only: [:index] do
       collection do
-        resources :posts, only: [:new, :create, :show, :update]
+        resources :posts, only: [:new, :create, :show, :update] do
+          resources :post_comments, only: [:show, :edit, :create, :index, :update, :destroy]
+        end
       end
-      resources :post_comments, only: [:show, :edit, :create, :index, :update, :destroy]
     end
     resources :users, only: [:show, :edit, :update] do
       collection do
@@ -31,6 +32,14 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
   }
+
+  namespace :admin do
+    resources :posts, only: [:index, :show, :edit, :destroy, :update] do
+    resources :post_comments, only: [:destroy]
+    end
+  resources :categories, only: [:index,:create,:edit,:update]
+
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

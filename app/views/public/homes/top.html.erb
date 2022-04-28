@@ -1,18 +1,29 @@
-ようこそ、Tourist Spotへ！<br>
-ここは、観光地を地図で共有し合うレビューサイトです。<br>
-「旅行先でどこに行くかまだ決まってない…」<br>
-「良い場所を発見したので紹介したい！」<br>
-そんな悩みを、ここでは解決できます。<br>
-そして、あなたの地域の魅力をこの地図で伝えてみませんか？<br>
+<div class='container pt-5'>
+  <div class='row mt-5'>
+    <div class='col-8 mx-auto mt-5'>
+      <div class="pt-5 pl-5 pr-5 pb-5">
+        <h5>
+          ようこそ、Tourist Spotへ！<br>
+          ここは、観光地を地図で共有し合うレビューサイトです。<br>
+          「旅行先でどこに行くかまだ決まってない…」<br>
+          「良い場所を発見したので紹介したい！」<br>
+          そんな悩みを、ここでは解決できます。<br>
+          そして、あなたの地域の魅力をこの地図で伝えてみませんか？<br>
+        </h5>
+      </div>
 
-<div class="form-group offset-3">
+<div class="form-group offset-5">
 <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %>
 </div>
 
-<div class="form-group offset-3">
+<div class="form-group offset-5">
 <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
 </div>
 
-<div class="form-group offset-3">
+<div class="form-group offset-4">
 <%= link_to "ゲストユーザー（このまま進む）", sights_path, class: "btn btn-success" %>
+</div>
+
+    </div>
+  </div>
 </div>

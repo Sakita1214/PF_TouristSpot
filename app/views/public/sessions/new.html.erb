@@ -1,4 +1,7 @@
 <div class="container">
+  <div class='row mt-5'>
+    <div class='col-12 mx-auto'>
+      <div class="pt-5 pl-5 pr-5 pb-5">
   <h4 style="background-color:#EEEEEE;color:dark;display:inline">ログイン</h4>
   <br>
   <br>
@@ -29,9 +32,15 @@
   </div>
 <% end %>
 
+<br>
+
 <tr>
   <h4 style="background-color:#EEEEEE;color:dark;display:inline">会員登録がお済みでない方</h4><br><br>
     <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
       <%= link_to "こちら", new_registration_path(resource_name) %>から新規登録を行なってください。
     <% end %>
 </tr>
+      </div>
+    </div>
+  </div>
+</div>
