@@ -43,7 +43,7 @@ function initMap(){
 
     marker_<%= post.id %>.addListener('click', function() { // ピンをクリックしたとき
       new google.maps.InfoWindow({ // 吹き出しの追加
-          content: '<%= image_tag 'no_image.jpg', size: "75x75" %><br><%= post.place %><br>登録カテゴリ<br>１<br><%= link_to "詳細を見る", post_path(post) %>' // 吹き出しに表示する内容
+          content: '<%= image_tag 'no_image.jpg', size: "75x75" %><br><%= post.place %><br><%= post.description %><br>登録カテゴリ<br>(1),(2),(3)<br><%= link_to "詳細を見る", post_path(post) %>' // 吹き出しに表示する内容
       }).open(map, marker_<%= post.id %>);
     });
   <% end %>
