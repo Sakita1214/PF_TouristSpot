@@ -1,0 +1,66 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <%= link_to "Tourist_Spot", root_path, class: 'nav-link text-light' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <table>
+            <% if user_signed_in? %>
+              <tr>
+                <font color="white">
+                ようこそ、<%= current_user.name %>さん!
+                </font>
+                <li>
+                  <%= link_to sights_path ,class: 'nav-link text-light' do %>
+                <i class="fas fa-home"></i> TOP
+                  <% end %>
+                </li>
+                <li>
+                  <%=  link_to sights_path,class: 'nav-link text-light' do %>
+                    <i class="fas fa-users"></i> ランキング
+                  <% end %>
+                </li>
+                <li>
+                  <%=  link_to user_path(current_user) ,class: 'nav-link text-light' do %>
+                    <i class="fas fa-book-open"></i> マイページ
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
+                    <i class="fas fa-sign-out-alt"></i> ログアウト
+                  <% end %>
+                </li>
+              </tr>
+              <% else %>
+                <tr>
+                  <li>
+                    <%= link_to sights_path,class: 'nav-link text-light' do %>
+                      <i class="fas fa-home"></i> TOP
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to sights_path,class: 'nav-link text-light' do %>
+                      <i class="fas fa-link"></i> ランキング
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
+                      <i class="fas fa-user-plus"></i> 新規登録
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
+                      <i class="fas fa-sign-in-alt"></i> ログイン
+                    <% end %>
+                  </li>
+                </tr>
+                <% end %>
+          </table>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

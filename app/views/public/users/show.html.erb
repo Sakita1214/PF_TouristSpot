@@ -1,3 +1,4 @@
+<%= render "public/homes/header" %>
 <div class="container">
 
   <div class="row mt-5 col lg-3">
@@ -21,22 +22,17 @@
         </tr>
       </table>
       </div>
-    <table>
-      <tr>
-        <td>    <h4 style="background-color:#EEEEEE;color:dark;display:inline"><%= @user.name %> さんの投稿一覧</h4>
-          <div class="col lg-3">
-            <td></td>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td><h5>投稿一覧</h5>
-        <td>
 
-        </td>
-        </td>
+  <h4 style="background-color:#EEEEEE;color:dark;display:inline"><%= @user.name %> さんの投稿一覧</h4>
+    <table>
+
+      <tr>
+        <th></th>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
+
     </table>
-    </div>
 
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>

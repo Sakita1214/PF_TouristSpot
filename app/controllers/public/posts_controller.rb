@@ -24,6 +24,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
     @post_comments= @post.post_comments
+    @categories = Category.all
   end
 
   def update
@@ -41,7 +42,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :genre_id, :place, :description, :image)
+    params.require(:post).permit(:user_id, :category_id, :place, :description, :image)
   end
 
 end

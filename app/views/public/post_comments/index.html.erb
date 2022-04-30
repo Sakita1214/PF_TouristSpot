@@ -1,3 +1,4 @@
+<%= render "public/homes/header" %>
 <%= form_with model: [@post, @post_comment] do |f| %>
 <%= f.file_field :image, accept: "image/*" %>
 <%= f.label :comment, "コメント"%>

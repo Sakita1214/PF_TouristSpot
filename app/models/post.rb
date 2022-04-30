@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
 
   belongs_to :user
-  belongs_to :genre, optional: true
+  belongs_to :category, optional: true
 
   validates :place, :description, presence: true
 
