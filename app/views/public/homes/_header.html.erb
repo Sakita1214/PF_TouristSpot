@@ -14,7 +14,7 @@
                 ようこそ、<%= current_user.name %>さん!
                 </font>
                 <li>
-                  <%= link_to sights_path ,class: 'nav-link text-light' do %>
+                  <%= link_to root_path ,class: 'nav-link text-light' do %>
                 <i class="fas fa-home"></i> TOP
                   <% end %>
                 </li>
@@ -37,7 +37,7 @@
               <% else %>
                 <tr>
                   <li>
-                    <%= link_to sights_path,class: 'nav-link text-light' do %>
+                    <%= link_to root_path,class: 'nav-link text-light' do %>
                       <i class="fas fa-home"></i> TOP
                     <% end %>
                   </li>

@@ -25,14 +25,14 @@
 
   <h4 style="background-color:#EEEEEE;color:dark;display:inline"><%= @user.name %> さんの投稿一覧</h4>
     <table>
-
+      <% @post_comments.each do |post_comment| %>
       <tr>
-        <th></th>
-        <td></td>
-        <td></td>
+        <th><%= post_comment.created_at %></th>
+        <td><%= post_comment.post.place %></td>
+        <td><%= post_comment.comment %></td>
         <td></td>
       </tr>
-
+      <% end %>
     </table>
 
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>

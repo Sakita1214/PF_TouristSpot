@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         patch "out"
       end
     end
+    resources :categories, only: [:create]
   end
 
   # 退会確認画面
