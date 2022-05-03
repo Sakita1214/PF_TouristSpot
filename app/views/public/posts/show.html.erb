@@ -27,13 +27,8 @@
     <%= link_to "コメントする", post_post_comments_path(@post.id), class: "btn btn-primary" %><br><br>
 
 <h4 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">カテゴリ</h4><br>
-  <% @categories.each do |category| %>
-    <%= category.name %><br>
-  <% end %>
-
-  <%= form_with model: @category, url: categories_path,  local: true do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit '追加',class: 'btn btn-success' %>
+  <%= form_for @categories, url: post_path, local: true do |f| %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "--カテゴリ選択--" %>
   <% end %>
 
       </div>

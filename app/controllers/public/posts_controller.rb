@@ -25,7 +25,7 @@ class Public::PostsController < ApplicationController
     @post_comment = PostComment.new
     @post_comments= @post.post_comments
     @categories = Category.all
-    @category = Category.new
+
   end
 
   def update
