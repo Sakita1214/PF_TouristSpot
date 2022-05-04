@@ -3,6 +3,8 @@
   <h2 style="background-color:black;color:dark;display:inline" class="bg-light text-dark"><%= @post.place %></h2>
   <div class='row mt-5'>
     <div class='col-6 mx-auto'>
+
+  <!--投稿内容-->
       <%= form_with model: @post, url: post_path(@post.id),  local: true do |f| %>
         <table class="table">
           <tr>
@@ -10,9 +12,43 @@
             <td><%= f.text_area :description, placeholder: "（説明）", class: "form-control" %></td>
           </tr>
         </table>
+
+        <%= link_to_add_association 'Categoryの追加',
+                              # form_withのformタグ変数
+                              f,
+                              # フォームのデータを追加するモデル名
+                              :post_categories,
+                              # 追加するフォームの部分テンプレート
+                              partial: "category_fields",
+                              # オプション
+                              data: {
+                                # フォームを追加する場所の指定
+                                association_insertion_node: '#post_category_forms',
+                                # フォームを前後どの位置に追加するか。(初期値: before)
+                                association_insertion_method: 'before'
+                              },
+                              # フォームオブジェクトを指定する場合(初期値 : f)
+                              form_name: 'f',
+                              # 部分テンプレートに渡す変数があれば記述
+                              render_options: {
+                                locals: {
+                                  # 通常の部分テンプレートと同じ記述
+                                }
+                              }
+        %>
+
+        <div id="post_category_forms">
+          <%= f.fields_for :post_categories do |post_category| %>
+            <%= render 'category_fields', f: post_category %>
+          <% end %>
+        </div>
+
+
         <%= f.submit "内容を変更する", class: "mt-3 col mx-auto btn btn-sm btn-success" %>
       <% end %>
 
+
+  <!--コメント-->
 <h4 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">新着投稿（全x件）</h4><br>
       <% @post_comments.each do |post_comment| %>
         <%= post_comment.user.name %>
@@ -23,13 +59,20 @@
         <% end %>
         <%= post_comment.comment %> <br>
       <%end%>
-
     <%= link_to "コメントする", post_post_comments_path(@post.id), class: "btn btn-primary" %><br><br>
 
+
+  <!--タグ付け-->
 <h4 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">カテゴリ</h4><br>
-  <%= form_for @categories, url: post_path, local: true do |f| %>
-  <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "--カテゴリ選択--" %>
-  <% end %>
+  <%#= form_with model: @post, url: post_path(@post), local: true do |f| %>
+    <%#= f.collection_select :category_id, Category.all, :id, :name, include_blank: "--カテゴリ選択--" %>
+     <%#= f.submit "submit", class: "mt-3 col mx-auto btn btn-sm btn-success" %>
+  <%# end %>
+
+  <!--COMMENT VIEW-->
+  <%# @post.post_categories.take(3).each do |category| %>
+    <%#= category.category.name %>
+  <%# end %>
 
       </div>
   </div>

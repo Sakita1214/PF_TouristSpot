@@ -1,0 +1,11 @@
+<%# 以下の.nested-fieldsは、必須です。 %>
+<div class="nested-fields">
+  <div class="field">
+    <%# link_to_add_associationのform_nameで指定した名前。(初期値 : f)  %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "--カテゴリ選択--" %>
+  </div>
+  <div class="field">
+    <%= link_to_remove_association "Categoryを削除", f %>
+  </div>
+  <hr>
+</div>

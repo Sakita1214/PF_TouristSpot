@@ -12,11 +12,21 @@ class Public::PostsController < ApplicationController
     @post.longitude = params[:post][:longitude].to_f
     @post.user_id = current_user.id
 
-    if @post.save!
-      redirect_to post_path(@post.id)
+
+    # category_list = params[:post][:name].split(',')
+    if @post.save
+      # @post.save_category(category_list)
+      redirect_to post_path(@post),notice:'投稿完了しました:)'
     else
-      render :new
+      render:new
     end
+
+
+    # if @post.save!
+    #   redirect_to post_path(@post.id)
+    # else
+    #   render :new
+    # end
   end
 
   def show
@@ -30,7 +40,10 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(description: params[:post][:description])
+
+    # PostCategory.create!(post_id: @post.id, category_id: params[:post][:category_id])
+
+    @post.update(post_params)
     redirect_to post_path(@post.id)
   end
 
@@ -43,7 +56,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :category_id, :place, :description, :image)
+    params.require(:post).permit(:user_id, :place, :description, :image, post_categories_attributes: [:id, :category_id, :_destroy])
   end
 
 end
