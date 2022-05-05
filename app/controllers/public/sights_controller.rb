@@ -4,6 +4,7 @@ class Public::SightsController < ApplicationController
     @sights = Sight.all
     @post = Post.new
     @posts = Post.all
+    @categories = Category.all
   end
 
 

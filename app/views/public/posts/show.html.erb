@@ -13,6 +13,7 @@
           </tr>
         </table>
 
+<h4 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">カテゴリ</h4><br>
         <%= link_to_add_association 'Categoryの追加',
                               # form_withのformタグ変数
                               f,
@@ -63,7 +64,6 @@
 
 
   <!--タグ付け-->
-<h4 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">カテゴリ</h4><br>
   <%#= form_with model: @post, url: post_path(@post), local: true do |f| %>
     <%#= f.collection_select :category_id, Category.all, :id, :name, include_blank: "--カテゴリ選択--" %>
      <%#= f.submit "submit", class: "mt-3 col mx-auto btn btn-sm btn-success" %>
