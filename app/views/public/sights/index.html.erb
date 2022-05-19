@@ -1,9 +1,11 @@
 <%= render "public/homes/header" %>
 <div class='container mt-5'>
+  
+
 
 <%= form_with url: sights_path,  method: :get do| f | %>
   <%= f.collection_check_boxes :categories, Category.all, :id, :name, include_hidden: false %>
-  <%= f.submit '検索' %>
+  <%= f.submit '絞り込み検索' %>
 <% end %>
 
 <%= form_with(model: nil, local: true) do |f| %>

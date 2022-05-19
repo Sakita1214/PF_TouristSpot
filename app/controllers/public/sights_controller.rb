@@ -6,14 +6,6 @@ class Public::SightsController < ApplicationController
     @posts = Post.all
     @categories = Category.all
 
-    if params[:search].present?
-      post = Post.posts_serach(params[:search])
-    elsif params[:category_id].present?
-      @post = Post.find(params[:category_id])
-      post = @post.posts.order(created_at: :desc)
-    else
-      post = Post.all.order(created_at: :desc)
-    end
     if params[:categories].present?
       post_ids = []
       params[:categories].each_with_index do |category_id,i|
