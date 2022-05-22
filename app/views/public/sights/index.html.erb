@@ -1,12 +1,22 @@
 <%= render "public/homes/header" %>
 <div class='container mt-5'>
-  
 
+<div><%= @posts.count %>件 表示中</div>
 
-<%= form_with url: sights_path,  method: :get do| f | %>
-  <%= f.collection_check_boxes :categories, Category.all, :id, :name, include_hidden: false %>
+<h4 style="background-color:black;color:dark;display:inline" class="bg-light text-dark">絞り込み検索</h4>
+<div id="disp_check_counts">チェック0件選択中</div>
+  <%= form_with url: sights_path,  method: :get do| f | %>
+    <%= f.collection_check_boxes(:categories, Category.all, :id, :name, include_hidden: false) do |b| %>
+      <label class="checkbox-inline">
+        <%= b.check_box class:"check_boxes" do %>
+          <%= b.check_box + b.text %>
+        <% end %>
+        <%= b.label {b.text} %>
+      </label>
+    <% end %>
   <%= f.submit '絞り込み検索' %>
-<% end %>
+  <% end %>
+
 
 <%= form_with(model: nil, local: true) do |f| %>
   <div class="actions">
@@ -111,3 +121,26 @@ function codeAddress(){
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAP'] %>&callback=initMap" async defer data-turbolinks-eval="false"></script>
+
+<script>
+//チェックボックスを取得する
+const el = document.getElementsByClassName("check_boxes");
+
+//チェック済みのチェックボックスの数を返す
+const getCheckedCount = () => {
+
+    let count = 0;
+
+    for (let i = 0; i < el.length; i++) {
+        if (el[i].checked) {
+            count++;
+        }
+    }
+    $("#disp_check_counts").html("チェック"+ count +"件")
+};
+
+//ボタンをクリックした時に「getCheckedCount()」を呼び出す
+for(let i = 0; i<el.length; i++){
+    el[i].addEventListener("click", getCheckedCount, false);
+}
+</script>
