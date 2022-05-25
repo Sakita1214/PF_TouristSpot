@@ -58,6 +58,12 @@
         <% else %>
           <%= "　　" %>
         <% end %>
+
+        <% post_comment.tags.each do |tag| %>
+          <%= tag.name %>
+        <% end %>
+
+
         <%= post_comment.comment %><%= link_to "編集", edit_post_post_comment_path(@post.id, post_comment.id), class: "btn btn-primary" %><br>
 
       <%end%>

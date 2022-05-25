@@ -16,6 +16,10 @@ class Public::PostCommentsController < ApplicationController
     else
       redirect_to post_path(post)
     end
+      tags = Vision.get_image_data(comment.image)
+      tags.each do |tag|
+      comment.tags.create(name: tag)
+      end
   end
 
   def edit
