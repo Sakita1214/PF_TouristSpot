@@ -120,7 +120,7 @@ function codeAddress(){
 }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAP'] %>&callback=initMap" async defer data-turbolinks-eval="false"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.GOOGLEMAP %>&callback=initMap" async defer data-turbolinks-eval="false"></script>
 
 <script>
 //チェックボックスを取得する
