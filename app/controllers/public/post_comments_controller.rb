@@ -1,5 +1,6 @@
 class Public::PostCommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_current_user, only: [:edit, :update]
 
   def index
     @post_comment = PostComment.new
@@ -16,10 +17,14 @@ class Public::PostCommentsController < ApplicationController
     else
       redirect_to post_path(post)
     end
+
+    #byebug
+    if comment.image.attached?
       tags = Vision.get_image_data(comment.image)
       tags.each do |tag|
-      comment.tags.create(name: tag)
+        comment.tags.create(name: tag)
       end
+    end
   end
 
   def edit
@@ -50,4 +55,10 @@ class Public::PostCommentsController < ApplicationController
     params.require(:post_comment).permit(:comment, :image)
   end
 
+  def require_current_user
+    @post_comment = PostComment.find(params[:id])
+    if @post_comment.user != current_user
+      redirect_to root_path
+    end
+  end
 end

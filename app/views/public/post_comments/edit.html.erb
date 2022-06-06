@@ -1,8 +1,10 @@
 <%= render "public/homes/header" %>
 
 <%= form_with model: [@post, @post_comment] do |f| %>
-<%= f.file_field :image, accept: "image/*" %>
-<%= f.label :comment, "コメント"%>
-<%= f.text_field :comment %>
-<%= f.submit '新規登録',class: 'btn btn-success' %>
+  <%= f.file_field :image, accept: "image/*" %>
+  <%= f.label :comment, "コメント"%>
+  <%= f.text_field :comment %>
+  <%= f.submit '新規登録',class: 'btn btn-success' %>
 <% end %>
+
+<%= link_to "削除", post_post_comment_path(id: @post_comment, post_id: @post), method: :delete, class: 'btn btn-danger' %>

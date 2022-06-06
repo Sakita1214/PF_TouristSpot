@@ -64,7 +64,12 @@
         <% end %>
 
 
-        <%= post_comment.comment %><%= link_to "編集", edit_post_post_comment_path(@post.id, post_comment.id), class: "btn btn-primary" %><br>
+        <%= post_comment.comment %>
+        <% if post_comment.user == current_user %>
+          <%= link_to "編集", edit_post_post_comment_path(@post.id, post_comment.id), class: "btn btn-primary" %>
+        <% end %>
+        <br>
+        
 
       <%end%>
     <%= link_to "コメントする", post_post_comments_path(@post.id), class: "btn btn-primary" %><br><br>
