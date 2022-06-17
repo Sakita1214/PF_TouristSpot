@@ -19,6 +19,7 @@ class Public::PostCommentsController < ApplicationController
     end
 
     #byebug
+    
     if comment.image.attached?
       tags = Vision.get_image_data(comment.image)
       tags.each do |tag|
