@@ -58,11 +58,12 @@
         <% else %>
           <%= "　　" %>
         <% end %>
-
-
+        
+        
         <% post_comment.tags.each do |tag| %>
           <%= tag.name %>
         <% end %>
+        
         
         <%= post_comment.comment %>
         <% if post_comment.user == current_user %>
